@@ -1,5 +1,6 @@
 package model
 
+import model.positioning.Move
 import utils.Priority
 
 /**
@@ -9,4 +10,6 @@ object Bishop extends ChessPiece {
 
   val characterOfPiece : Char = 'B'
   val priority : Int = Priority.bishopPriority
+  val moveInfinitely: Boolean = true
+  val moveStrategies: Set[Move] = Set(Move(-1, 1), Move(-1, -1), Move(1, -1), Move(1,1))
 }
