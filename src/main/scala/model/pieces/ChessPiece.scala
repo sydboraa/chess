@@ -1,4 +1,4 @@
-package model
+package model.pieces
 
 import model.positioning.Move
 

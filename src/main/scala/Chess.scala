@@ -1,4 +1,5 @@
 import model._
+import model.pieces._
 import service.CalculationService
 
 import scala.Console._
@@ -27,6 +28,7 @@ object Chess {
         case _ => throw new Exception("Wrong piece type!")
       }
     }
+
     val sortedPieces: List[ChessPiece] = listPiecesTypes.sortBy(_.priority)
     val board = Board.createEmptyBoard(boardSizeM.toInt, boardSizeN.toInt)
     val solutions : Set[Board] = CalculationService.calculate(board,sortedPieces)

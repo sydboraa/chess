@@ -1,5 +1,6 @@
 package model
 
+import model.pieces.ChessPiece
 import model.positioning.Coordinate
 
 /**
@@ -22,5 +23,26 @@ object Board {
     }
     Board(boardsMap)
   }
+}
 
+case class MarkedBoard(baseBoard: Board, markedCoordinates: Set[Coordinate] = Set.empty) {
+
+  def isMarked(coordinate: Coordinate): Boolean = markedCoordinates.contains(coordinate)
+
+  //get available positions for placing piece
+  def notMarkedEmptyCoordinates: Set[Coordinate] = {
+    baseBoard.boardItems
+      .filter {
+      case (coordinate: Coordinate, boardItem: BoardItem) =>
+        !markedCoordinates.contains(coordinate) && boardItem.piece.isEmpty
+    }.keySet
+  }
+
+  def putPiece(c: Coordinate, p: ChessPiece): MarkedBoard = {
+    this.copy(baseBoard = Board(boardItems = baseBoard.boardItems + (c -> BoardItem(piece = Some(p)))))
+  }
+
+  def mark(c: Coordinate): MarkedBoard = {
+    this.copy(markedCoordinates = markedCoordinates + c)
+  }
 }
