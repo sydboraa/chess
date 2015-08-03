@@ -3,7 +3,6 @@ package service
 import model.pieces.ChessPiece
 import model.positioning.{Coordinate, Move}
 import model.{BoardItem, MarkedBoard, Board}
-
 import scala.annotation.tailrec
 
 /**
@@ -86,7 +85,7 @@ object CalculationService {
   }
 
   @tailrec
-  def validatePiecePlacement(startCoordinate: Coordinate, board: MarkedBoard, move: Move, indefinite: Boolean): Option[MarkedBoard] = {
+  private def validatePiecePlacement(startCoordinate: Coordinate, board: MarkedBoard, move: Move, indefinite: Boolean): Option[MarkedBoard] = {
     // Validates piece placement and returns marked board if possible
     val currentCoordinate = startCoordinate + move
 
@@ -101,7 +100,7 @@ object CalculationService {
       case None => (Some(board), false) // End of board at one direction
     }
 
-    if (partialResult.isDefined && coordinateInsideBoard) {
+    if (partialResult.isDefined && coordinateInsideBoard && indefinite) {
       validatePiecePlacement(currentCoordinate, partialResult.get, move, indefinite)
     } else {
       partialResult
