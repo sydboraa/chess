@@ -7,8 +7,27 @@ import model.positioning.Coordinate
  * Created by SB on 02/08/15.
  */
 
-case class BoardItem(piece: Option[ChessPiece] = None) //board consist boardItems and pieces movements and coordinates
-case class Board(boardItems: Map[Coordinate, BoardItem])
+case class BoardItem(piece: Option[ChessPiece] = None) {
+  //board consist boardItems and pieces movements and coordinates
+  override def toString = piece.map(p => p.toString).getOrElse("-")
+}
+
+case class Board(boardItems: Map[Coordinate, BoardItem]) {
+
+  override def toString: String = {
+    val weight = boardItems.keys.maxBy(coordinate => coordinate.x).x
+    val height = boardItems.keys.maxBy(coordinate => coordinate.y).y
+
+    (0 to height).foldLeft("") {
+      (str, y) =>
+        (0 to weight).foldLeft(str) {
+          (str, x) =>
+            val boardItem:String = boardItems(Coordinate(x, y)).toString
+            s"$str $boardItem"
+        } + "\n"
+    }
+  }
+}
 
 object Board {
 

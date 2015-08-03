@@ -33,5 +33,14 @@ object Chess {
     val board = Board.createEmptyBoard(boardSizeM.toInt, boardSizeN.toInt)
     val solutions : Set[Board] = CalculationService.calculate(board,sortedPieces)
     println(s"Total solution: ${solutions.size}")
+
+    solutions.toSeq.zipWithIndex.foreach {
+      case (r, i) => {
+        val ii = i + 1
+        println(s"Solution $ii")
+        println(r.toString)
+        println()
+      }
+    }
   }
 }

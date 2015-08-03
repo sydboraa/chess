@@ -45,13 +45,12 @@ object CalculationService {
 
     val markedBoard = new MarkedBoard(baseBoard = board)
 
-    val resultsAsOpt: Set[MarkedBoard] = pieces.foldLeft(Set(markedBoard)) {
+    val results: Set[MarkedBoard] = pieces.foldLeft(Set(markedBoard)) {
       (boards, aPiece) => placeBoards(boards, aPiece)
     }
     //convert markedBoard to normal board
-    resultsAsOpt.map {
+    results.map {
       result => {
-        println(result.baseBoard)
         result.baseBoard
       }
     }

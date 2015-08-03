@@ -12,4 +12,6 @@ abstract class ChessPiece {
   val moveInfinitely: Boolean
   val moveStrategies: Set[Move]
 
+  override def toString = characterOfPiece.toString
+
 }
