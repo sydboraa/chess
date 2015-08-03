@@ -33,7 +33,7 @@ object Board {
 
   def createEmptyBoard(weight: Int, height: Int): Board = {
     //for give coordinate, get item
-    val boardsMap = (0 until weight).foldLeft(Map[Coordinate, BoardItem]()) {
+    val boardsMap : Map[Coordinate, BoardItem] = (0 until weight).foldLeft(Map[Coordinate, BoardItem]()) {
       (boardMap, curX) =>
         (0 until height).foldLeft(boardMap) {
           (boardMap: Map[Coordinate, BoardItem], curY: Int) =>

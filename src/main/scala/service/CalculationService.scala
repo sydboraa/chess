@@ -10,42 +10,9 @@ import scala.annotation.tailrec
  */
 object CalculationService {
 
-//  def calculate(board: Board,pieces: List[ChessPiece]) : Set[Board] = {
-//
-//    val markedBoard = new MarkedBoard(baseBoard = board)
-//
-//    val resultsAsOpt: Set[MarkedBoard] = pieces.foldLeft(Set(markedBoard)) {
-//      (boards, aPiece) => {
-//        boards.flatMap {
-//          markedBoard => {
-//            markedBoard.notMarkedEmptyCoordinates.flatMap {
-//              coordinate => {
-//                val boardWPiece = markedBoard.putPiece(coordinate, aPiece)
-//                // Mark appropriate fields marked, checking conflicts on the way, if conflict found return None
-//                aPiece.moveStrategies.foldLeft(Some(boardWPiece): Option[MarkedBoard]) {
-//                  case (Some(board:MarkedBoard), move: Move) =>
-//                    validatePiecePlacement(coordinate, board, move, aPiece.moveInfinitely)
-//                  case (None, _) => None // Another move failed, just ignore
-//                }
-//              }
-//            }
-//          }
-//        }
-//      }
-//    }
-//    //convert markedBoard to normal board
-//    resultsAsOpt.map {
-//      result => {
-//        println(result.baseBoard)
-//        result.baseBoard
-//      }
-//    }
-//  }
-
   def calculate(board: Board, pieces: List[ChessPiece]): Set[Board] = {
 
-    val markedBoard = new MarkedBoard(baseBoard = board)
-
+    val markedBoard : MarkedBoard = new MarkedBoard(baseBoard = board)
     val results: Set[MarkedBoard] = pieces.foldLeft(Set(markedBoard)) {
       (boards, aPiece) => placeBoards(boards, aPiece)
     }
@@ -106,6 +73,8 @@ object CalculationService {
       partialResult
     }
   }
+
+  //This method is my first solution. After that I wrote another method for this reason which is recursive
   /*def validatePiecePlacement(startCoordinate: Coordinate, board: MarkedBoard, move: Move, indefinite: Boolean): Option[MarkedBoard] = {
     val currentCoordinate = startCoordinate + move
 
