@@ -18,20 +18,8 @@ object Chess {
     val piecesType = in.readLine().trim
     println(s"The play is starting with ${boardSizeM}*${boardSizeN} and ${piecesType}")
 
-    val listPiecesTypes: List[ChessPiece] = piecesType.toUpperCase.toList.map {
-      piece => piece match {
-        case 'Q' => Queen
-        case 'R' => Rook
-        case 'B' => Bishop
-        case 'N' => Knight
-        case 'K' => King
-        case _ => throw new Exception("Wrong piece type!")
-      }
-    }
-
-    val sortedPieces: List[ChessPiece] = listPiecesTypes.sortBy(_.priority)
     val board = Board.createEmptyBoard(boardSizeM.toInt, boardSizeN.toInt)
-    val solutions : Set[Board] = CalculationService.calculate(board,sortedPieces)
+    val solutions : Set[Board] = CalculationService.calculate(board,getOrderedPieces(piecesType))
 
     println(s"Total solution: ${solutions.size}")
 
@@ -43,5 +31,27 @@ object Chess {
         println()
       }
     }
+  }
+
+  def getOrderedPieces(pieces : String) : List[ChessPiece] = {
+    pieces.nonEmpty match {
+      case true => {
+        val listPiecesTypes: List[ChessPiece] = pieces.toUpperCase.toList.map {
+          piece => piece match {
+            case 'Q' => Queen
+            case 'R' => Rook
+            case 'B' => Bishop
+            case 'N' => Knight
+            case 'K' => King
+            case _ => throw new Exception("Wrong piece type!")
+          }
+        }
+        listPiecesTypes.sortBy(_.priority)
+      }
+      case false => {
+        throw new Exception("Please enter the pieces")
+      }
+    }
+
   }
 }
