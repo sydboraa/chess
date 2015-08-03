@@ -18,7 +18,7 @@ object Chess {
     val piecesType = in.readLine().trim
     println(s"The play is starting with ${boardSizeM}*${boardSizeN} and ${piecesType}")
 
-    val listPiecesTypes: List[ChessPiece] = piecesType.toList.map {
+    val listPiecesTypes: List[ChessPiece] = piecesType.toUpperCase.toList.map {
       piece => piece match {
         case 'Q' => Queen
         case 'R' => Rook
@@ -32,6 +32,7 @@ object Chess {
     val sortedPieces: List[ChessPiece] = listPiecesTypes.sortBy(_.priority)
     val board = Board.createEmptyBoard(boardSizeM.toInt, boardSizeN.toInt)
     val solutions : Set[Board] = CalculationService.calculate(board,sortedPieces)
+
     println(s"Total solution: ${solutions.size}")
 
     solutions.toSeq.zipWithIndex.foreach {

@@ -9,14 +9,14 @@ import model.positioning.Coordinate
 
 case class BoardItem(piece: Option[ChessPiece] = None) {
   //board consist boardItems and pieces movements and coordinates
-  override def toString = piece.map(p => p.toString).getOrElse("-")
+  override def toString : String = piece.map(p => p.toString).getOrElse("-")
 }
 
 case class Board(boardItems: Map[Coordinate, BoardItem]) {
 
   override def toString: String = {
-    val weight = boardItems.keys.maxBy(coordinate => coordinate.x).x
-    val height = boardItems.keys.maxBy(coordinate => coordinate.y).y
+    val weight : Int = boardItems.keys.maxBy(coordinate => coordinate.x).x
+    val height : Int = boardItems.keys.maxBy(coordinate => coordinate.y).y
 
     (0 to height).foldLeft("") {
       (str, y) =>
