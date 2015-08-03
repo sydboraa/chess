@@ -4,6 +4,8 @@ import model.pieces.ChessPiece
 import model.positioning.{Coordinate, Move}
 import model.{BoardItem, MarkedBoard, Board}
 
+import scala.annotation.tailrec
+
 /**
  * Created by SB on 02/08/15.
  */
@@ -83,7 +85,29 @@ object CalculationService {
     }
   }
 
+  @tailrec
   def validatePiecePlacement(startCoordinate: Coordinate, board: MarkedBoard, move: Move, indefinite: Boolean): Option[MarkedBoard] = {
+    // Validates piece placement and returns marked board if possible
+    val currentCoordinate = startCoordinate + move
+
+    val (partialResult, coordinateInsideBoard) = board.baseBoard.boardItems.get(currentCoordinate) match {
+      case Some(bi: BoardItem) =>
+        if (bi.piece.isEmpty) {
+          val markedBoard = board.mark(currentCoordinate)
+          (Some(markedBoard), true)
+        } else {
+          (None, true) // Ups, conflict!
+        }
+      case None => (Some(board), false) // End of board at one direction
+    }
+
+    if (partialResult.isDefined && coordinateInsideBoard) {
+      validatePiecePlacement(currentCoordinate, partialResult.get, move, indefinite)
+    } else {
+      partialResult
+    }
+  }
+  /*def validatePiecePlacement(startCoordinate: Coordinate, board: MarkedBoard, move: Move, indefinite: Boolean): Option[MarkedBoard] = {
     val currentCoordinate = startCoordinate + move
 
     val partialResult = board.baseBoard.boardItems.get(currentCoordinate) match {
@@ -101,6 +125,6 @@ object CalculationService {
       case None => Some(board) // End of board at one direction
     }
     partialResult
-  }
+  }*/
 
 }

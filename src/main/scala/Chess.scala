@@ -19,9 +19,10 @@ object Chess {
     println(s"The play is starting with ${boardSizeM}*${boardSizeN} and ${piecesType}")
 
     val board = Board.createEmptyBoard(boardSizeM.toInt, boardSizeN.toInt)
-    val solutions : Set[Board] = CalculationService.calculate(board,getOrderedPieces(piecesType))
 
-    println(s"Total solution: ${solutions.size}")
+    val startTimer : Long = System.nanoTime()
+    val solutions : Set[Board] = CalculationService.calculate(board,getOrderedPieces(piecesType))
+    val stopTimer : Long = System.nanoTime()
 
     solutions.toSeq.zipWithIndex.foreach {
       case (r, i) => {
@@ -31,6 +32,11 @@ object Chess {
         println()
       }
     }
+
+    val elapsedTime : Long = (stopTimer - startTimer) / (1000 * 1000)
+    println(s"Total elapsed time: ${elapsedTime} ms")
+    println(s"Total solution: ${solutions.size}")
+
   }
 
   def getOrderedPieces(pieces : String) : List[ChessPiece] = {
