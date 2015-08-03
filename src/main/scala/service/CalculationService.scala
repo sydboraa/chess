@@ -9,28 +9,44 @@ import model.{BoardItem, MarkedBoard, Board}
  */
 object CalculationService {
 
-  def calculate(board: Board,pieces: List[ChessPiece]) : Set[Board] = {
+//  def calculate(board: Board,pieces: List[ChessPiece]) : Set[Board] = {
+//
+//    val markedBoard = new MarkedBoard(baseBoard = board)
+//
+//    val resultsAsOpt: Set[MarkedBoard] = pieces.foldLeft(Set(markedBoard)) {
+//      (boards, aPiece) => {
+//        boards.flatMap {
+//          markedBoard => {
+//            markedBoard.notMarkedEmptyCoordinates.flatMap {
+//              coordinate => {
+//                val boardWPiece = markedBoard.putPiece(coordinate, aPiece)
+//                // Mark appropriate fields marked, checking conflicts on the way, if conflict found return None
+//                aPiece.moveStrategies.foldLeft(Some(boardWPiece): Option[MarkedBoard]) {
+//                  case (Some(board:MarkedBoard), move: Move) =>
+//                    validatePiecePlacement(coordinate, board, move, aPiece.moveInfinitely)
+//                  case (None, _) => None // Another move failed, just ignore
+//                }
+//              }
+//            }
+//          }
+//        }
+//      }
+//    }
+//    //convert markedBoard to normal board
+//    resultsAsOpt.map {
+//      result => {
+//        println(result.baseBoard)
+//        result.baseBoard
+//      }
+//    }
+//  }
+
+  def calculate(board: Board, pieces: List[ChessPiece]): Set[Board] = {
 
     val markedBoard = new MarkedBoard(baseBoard = board)
 
     val resultsAsOpt: Set[MarkedBoard] = pieces.foldLeft(Set(markedBoard)) {
-      (boards, aPiece) => {
-        boards.flatMap {
-          markedBoard => {
-            markedBoard.notMarkedEmptyCoordinates.flatMap {
-              coordinate => {
-                val boardWPiece = markedBoard.putPiece(coordinate, aPiece)
-                // Mark appropriate fields marked, checking conflicts on the way, if conflict found return None
-                aPiece.moveStrategies.foldLeft(Some(boardWPiece): Option[MarkedBoard]) {
-                  case (Some(board:MarkedBoard), move: Move) =>
-                    validatePiecePlacement(coordinate, board, move, aPiece.moveInfinitely)
-                  case (None, _) => None // Another move failed, just ignore
-                }
-              }
-            }
-          }
-        }
-      }
+      (boards, aPiece) => placeBoards(boards, aPiece)
     }
     //convert markedBoard to normal board
     resultsAsOpt.map {
@@ -38,6 +54,33 @@ object CalculationService {
         println(result.baseBoard)
         result.baseBoard
       }
+    }
+  }
+
+  private def placeBoards(markedBoards: Set[MarkedBoard], piece: ChessPiece): Set[MarkedBoard] = {
+    markedBoards.flatMap {
+      markedBoard =>
+        placeBoard(markedBoard, piece)
+    }
+  }
+
+  private def placeBoard(markedBoard: MarkedBoard, piece: ChessPiece): Set[MarkedBoard] = {
+    markedBoard.notMarkedEmptyCoordinates
+      .flatMap {
+      coordinate =>
+        maybePlace(markedBoard, coordinate, piece)
+    }
+  }
+
+  private def maybePlace(markedBoard: MarkedBoard, coordinate: Coordinate, piece: ChessPiece): Option[MarkedBoard] = {
+    // Put piece
+    val boardWPiece = markedBoard.putPiece(coordinate, piece)
+
+    // Mark appropriate fields marked, checking conflicts on the way, if conflict found return None
+    piece.moveStrategies.foldLeft(Some(boardWPiece): Option[MarkedBoard]) {
+      case (Some(board:MarkedBoard), move: Move) =>
+        validatePiecePlacement(coordinate, board, move, piece.moveInfinitely)
+      case (None, _) => None // Another move failed, just ignore
     }
   }
 
