@@ -7,18 +7,9 @@ among the pieces.
 
 **To build and run**
 
-```
-> sbt run
-```
+You can start `> sbt run`or `> sbt -mem 4096 run`
 
-```
-> sbt -mem 4096 run
-```
-
-```
-> sbt -mem 4096 test
-```
-Important Note: I run and test on Java8.
+You can test `> sbt -mem 4096 test`
 
 **Sample for usage**
 ```
