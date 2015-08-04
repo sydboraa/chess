@@ -27,7 +27,7 @@ class CalculationServiceTest extends ChessSpec {
   * ((0, 1) and (0,2) will be disabled for other pieces. Because if we put another piece these locations, R will attack
   *
   * */
-  "For 3*2 board with marked Rook(0, 0)" should "calculate to disable locations are (0, 1), (0, 2) " in {
+  "3*2 board with marked Rook(0, 0)" should "calculate to disable locations are (0, 1), (0, 2) " in {
     val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook)), Coordinate(0, 1) -> BoardItem(None), Coordinate(0, 2) -> BoardItem(None),
       Coordinate(1, 0) -> BoardItem(None), Coordinate(1, 1) -> BoardItem(None), Coordinate(1, 2) -> BoardItem(None)))
 
@@ -56,7 +56,7 @@ class CalculationServiceTest extends ChessSpec {
   * ((1, 0) will be disabled for other pieces. Because if we put another piece these locations, R will attack
   *
   * */
-  "For 3*2 board with marked Rook(0,0)" should "calculate to disable location is (1, 0) " in {
+  "3*2 board with marked Rook(0,0)" should "calculate to disable location is (1, 0) " in {
     val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook)), Coordinate(0, 1) -> BoardItem(None), Coordinate(0, 2) -> BoardItem(None),
       Coordinate(1, 0) -> BoardItem(None), Coordinate(1, 1) -> BoardItem(None), Coordinate(1, 2) -> BoardItem(None)))
     val markedBoard : MarkedBoard = new MarkedBoard(baseBoard = board)
@@ -70,7 +70,7 @@ class CalculationServiceTest extends ChessSpec {
   }
 
   //isInsideBoard = false
-  "For 3*2 board with marked Rook(0,0)" should "calculate to disable locations for (0, -1) - no possible location" in {
+  "3*2 board with marked Rook(0,0)" should "calculate to disable locations for (0, -1) - no possible location" in {
     val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook)), Coordinate(0, 1) -> BoardItem(None), Coordinate(0, 2) -> BoardItem(None),
       Coordinate(1, 0) -> BoardItem(None), Coordinate(1, 1) -> BoardItem(None), Coordinate(1, 2) -> BoardItem(None)))
     val markedBoard : MarkedBoard = new MarkedBoard(baseBoard = board)
@@ -84,7 +84,7 @@ class CalculationServiceTest extends ChessSpec {
   }
 
   //isInsideBoard = false
-  "For 3*2 board with marked Rook(0,0)" should "calculate to disable locations for (-1, 0) - no possible location" in {
+  "3*2 board with marked Rook(0,0)" should "calculate to disable locations for (-1, 0) - no possible location" in {
     val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook)), Coordinate(0, 1) -> BoardItem(None), Coordinate(0, 2) -> BoardItem(None),
       Coordinate(1, 0) -> BoardItem(None), Coordinate(1, 1) -> BoardItem(None), Coordinate(1, 2) -> BoardItem(None)))
     val markedBoard : MarkedBoard = new MarkedBoard(baseBoard = board)
@@ -98,7 +98,7 @@ class CalculationServiceTest extends ChessSpec {
   }
 
   //this is a conflict test
-  "For 3*3 board with marked  Rook(0,0) and other Rook(1,1)" should "no possible location for K" in {
+  "3*3 board with marked  Rook(0,0) and other Rook(1,1)" should "no possible location for K" in {
     val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook)), Coordinate(0, 1) -> BoardItem(None), Coordinate(0, 2) -> BoardItem(None),
       Coordinate(1, 0) -> BoardItem(None), Coordinate(1, 1) -> BoardItem(Some(Rook)), Coordinate(1, 2) -> BoardItem(None),
       Coordinate(2, 0) -> BoardItem(None), Coordinate(2, 1) -> BoardItem(None), Coordinate(2, 2) -> BoardItem(None)))
@@ -111,7 +111,7 @@ class CalculationServiceTest extends ChessSpec {
     actual should be(None)
   }
 
-  "For 0*0 board with marked  Rook(0,0)" should "no possible location" in {
+  "0*0 board with marked  Rook(0,0)" should "no possible location" in {
     val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook))))//, Coordinate(0, 1) -> BoardItem(None)))
     val markedBoard : MarkedBoard = new MarkedBoard(baseBoard = board)
     val startCoordinate : Coordinate = Coordinate(0, 1)  //this coordinate is outside of the board
