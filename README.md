@@ -20,10 +20,9 @@ Please enter the board size N:
 Please enter the pieces of type:
 KKQQBBN
 
-2 of 3063828 solutions
+The play is starting with 7*7 and KKQQBBN
 
-Solution 1
-
+ Solution 1
  - - B - - - N
  Q - - - - - -
  - - - - - - -
@@ -41,10 +40,12 @@ Solution 1
  - - - - - - -
  - B B - - K -
 
-The play is starting with 7*7 and KKQQBBN
+
+Printed 2 of 3063828 solutions
+
 Total elapsed time: 128220 ms
 Total solution: 3063828
 
-**Note** : I printed only two solutions for readme.md
+Note : I printed only two solutions for readme.md
 ```
 ## About Solution Algorithm
