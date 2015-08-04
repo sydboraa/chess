@@ -70,7 +70,7 @@ Total solution: 3063828
 ## About Solution Algorithm
 
 First, the pieces are sorted by their priorities. Because I want to calculate which piece occupy more place.
-For example, when I put a Queen to (0, 0) location on a 3*3 board.
+For example, when I put a Queen to (0, 0) location on a 3x3 board.
 6 board item can't be reached by other pieces. ((1, 0, (2, 0), (1, 1), (2, 2), (0, 1), (0, 2))
 If I put Knight to (0, 0) location on the 3*3 board. Only one board item can't be reached by other pieces. (1, 2)
 
@@ -98,5 +98,3 @@ Step 4 - placeBoard method gets the not marked and empty coordinates, and for ea
 Step 5 - maybePlace method puts the piece on the coordinate and using the piece's moving strategies calls validatePiecePlacement method - validatePiecePlacement method is called by the maybePlace method for each move strategy of the piece
 
 Step 6 - validatePiecePlacement method takes a start coordinate, and a move strategy of the piece and marked board. Then it checks if there is a conflict or not. If the piece can make more than one movement, the method is called recursively
-
-
