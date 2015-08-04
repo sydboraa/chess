@@ -7,7 +7,7 @@ among the pieces.
 
 **To build and run**
 
-You can start `> sbt run`or `> sbt -mem 4096 run`
+You can start `> sbt run` or `> sbt -mem 4096 run`
 
 You can test `> sbt -mem 4096 test`
 
