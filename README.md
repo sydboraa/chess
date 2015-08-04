@@ -12,7 +12,7 @@ among the pieces.
 ```
 
 **Sample for usage**
-
+```
 Please enter the board size M:
 7
 Please enter the board size N:
@@ -23,7 +23,7 @@ KKQQBBN
 2 of 3063828 solutions
 
 Solution 1
-```
+
  - - B - - - N
  Q - - - - - -
  - - - - - - -
@@ -33,19 +33,18 @@ Solution 1
  - - K - - - -
 
  Solution 2
-  Q - - - - - -
-  - - K - - - -
-  - - - - - - -
-  - - N - - - -
-  - - - - - - Q
-  - - - - - - -
-  - B B - - K -
-```
+ Q - - - - - -
+ - - K - - - -
+ - - - - - - -
+ - - N - - - -
+ - - - - - - Q
+ - - - - - - -
+ - B B - - K -
 
 The play is starting with 7*7 and KKQQBBN
 Total elapsed time: 128220 ms
 Total solution: 3063828
 
 **Note** : I printed only two solutions for readme.md
-
+```
 ## About Solution Algorithm
