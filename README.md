@@ -10,7 +10,7 @@ among the pieces.
 ```
 > sbt run
 ```
-    or
+
 ```
 > sbt -mem 4096 run
 ```
@@ -88,9 +88,15 @@ This method includes a variable which is name is *markedBoard* and it's type is 
 Marked board is a kind of board in which you can mark a board item is occupied by a chess piece.
 
 Step 1 - calculate method is called with m*n empty board and something like List(Rook, King, King)
+
 Step 2 - calculate method calls placeBoards method. It's parameters are Set of MarkedBoard and the piece Rook - placeBoards method is called for each piece
+
 Step 3 - placeBoards method calls placeBoard method with a marked board and piece - placeBoard method is called for each marked board
+
 Step 4 - placeBoard method gets the not marked and empty coordinates, and for each possible coordinate calls maybePlace method - maybePlace method is called for the marked board's each not marked and empty coordinates
+
 Step 5 - maybePlace method puts the piece on the coordinate and using the piece's moving strategies calls validatePiecePlacement method - validatePiecePlacement method is called by the maybePlace method for each move strategy of the piece
-Step 6 - validatePiecePlacement method takes a start coordinate, and a move strategy of the piece and marked board. Then it checks if there is a conflict or not. If the piece can make more than one movement, the method is called recursively.
+
+Step 6 - validatePiecePlacement method takes a start coordinate, and a move strategy of the piece and marked board. Then it checks if there is a conflict or not. If the piece can make more than one movement, the method is called recursively
+
 
