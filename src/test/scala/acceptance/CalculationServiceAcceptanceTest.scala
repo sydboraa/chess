@@ -1,14 +1,16 @@
+package scala
 import model.Board
-import model.pieces.{Queen, Knight, King, Rook}
+import model.pieces.{Queen, Knight, Rook, King}
+import org.scalatest.{Matchers, FlatSpec}
 import service.CalculationService
 
 /**
- * Created by SB on 03/08/15.
+ * Created by SB on 04/08/15.
  */
-class CalculationServiceTest extends ChessSpec {
+class CalculationServiceAcceptanceTest extends FlatSpec with Matchers  {
 
   /**
-   * Acceptence tests
+   * Acceptance tests
    */
 
   "3 * 3 board containing 2K and 1R" should "return with 4 solutions " in {
@@ -29,5 +31,4 @@ class CalculationServiceTest extends ChessSpec {
     val solutions : Set[Board] = CalculationService.calculate(board8x8,List(Queen, Queen, Queen, Queen, Queen, Queen, Queen, Queen))
     solutions.size should be(92)
   }
-
 }

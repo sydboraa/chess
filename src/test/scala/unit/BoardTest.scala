@@ -1,4 +1,6 @@
-import model.{Board}
+package unit
+
+import model.Board
 
 /**
  * Created by SB on 03/08/15.

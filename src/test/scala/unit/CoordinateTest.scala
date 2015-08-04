@@ -1,5 +1,6 @@
-import model.pieces.{Bishop, ChessPiece}
-import model.positioning.{Move, Coordinate}
+package unit
+
+import model.positioning.{Coordinate, Move}
 
 /**
  * Created by SB on 03/08/15.
