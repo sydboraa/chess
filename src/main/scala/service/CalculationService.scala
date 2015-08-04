@@ -57,14 +57,17 @@ object CalculationService {
     val currentCoordinate = startCoordinate + move
 
     val (partialResult, coordinateInsideBoard) = board.baseBoard.boardItems.get(currentCoordinate) match {
-      case Some(bi: BoardItem) =>
+      case Some(bi: BoardItem) => {
         if (bi.piece.isEmpty) {
           val markedBoard = board.mark(currentCoordinate)
           (Some(markedBoard), true)
         } else {
           (None, true) // Ups, conflict!
         }
-      case None => (Some(board), false) // End of board at one direction
+      }
+      case None => {
+        (Some(board), false)
+      } // End of board at one direction
     }
 
     if (partialResult.isDefined && coordinateInsideBoard && indefinite) {
