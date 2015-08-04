@@ -1,6 +1,6 @@
 package unit
 
-import model.pieces.Rook
+import model.pieces.{Knight, ChessPiece, Rook}
 import model.positioning.{Coordinate, Move}
 import model.{Board, BoardItem, MarkedBoard}
 import org.scalatest.PrivateMethodTester.PrivateMethod
@@ -111,5 +111,14 @@ class CalculationServiceTest extends ChessSpec {
     actual should be(None)
   }
 
-
+  "For 0*0 board with marked  Rook(0,0)" should "no possible location" in {
+    val board : Board = Board(Map(Coordinate(0, 0) -> BoardItem(Some(Rook))))//, Coordinate(0, 1) -> BoardItem(None)))
+    val markedBoard : MarkedBoard = new MarkedBoard(baseBoard = board)
+    val startCoordinate : Coordinate = Coordinate(0, 1)  //this coordinate is outside of the board
+    val move : Move = Move(0, -1) // i try to put the piece (0, 0)
+    val indefinite : Boolean = false
+    val privateValidatePiecePlacementMethod = PrivateMethod[Option[MarkedBoard]]('validatePiecePlacement)
+    val actual = CalculationService invokePrivate privateValidatePiecePlacementMethod(startCoordinate, markedBoard, move, indefinite)
+    actual should be(None)
+  }
 }
