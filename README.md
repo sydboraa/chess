@@ -23,6 +23,7 @@ KKQQBBN
 2 of 3063828 solutions
 
 Solution 1
+```
  - - B - - - N
  Q - - - - - -
  - - - - - - -
@@ -39,6 +40,7 @@ Solution 1
   - - - - - - Q
   - - - - - - -
   - B B - - K -
+```
 
 The play is starting with 7*7 and KKQQBBN
 Total elapsed time: 128220 ms
@@ -47,6 +49,3 @@ Total solution: 3063828
 **Note** : I printed only two solutions for readme.md
 
 ## About Solution Algorithm
-
-
-
