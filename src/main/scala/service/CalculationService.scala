@@ -77,7 +77,7 @@ object CalculationService {
     }
   }
 
-  //This method is my first solution. After that I wrote another method for this reason which is tail recursive
+  //This method is my first solution. After that I wrote another method for this reason which is tail recursive and include some refactorings
   /*def validatePiecePlacement(startCoordinate: Coordinate, board: MarkedBoard, move: Move, indefinite: Boolean): Option[MarkedBoard] = {
     val currentCoordinate = startCoordinate + move
 
