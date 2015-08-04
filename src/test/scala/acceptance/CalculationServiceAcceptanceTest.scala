@@ -37,4 +37,6 @@ class CalculationServiceAcceptanceTest extends FlatSpec with Matchers  {
     val solutions : Set[Board] = CalculationService.calculate(board7x7, List(Queen, Queen, King, King, Bishop, Bishop, Knight))
     solutions.size should be(3063828)
   }
+
+  //printlerini kontrol eden bir şey yaz
 }
