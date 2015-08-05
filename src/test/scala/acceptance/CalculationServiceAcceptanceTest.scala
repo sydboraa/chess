@@ -38,5 +38,15 @@ class CalculationServiceAcceptanceTest extends FlatSpec with Matchers  {
     solutions.size should be(3063828)
   }
 
-  //printlerini kontrol eden bir şey yaz
+  "3*3 board containing 2K and 1R" should "print 4 solutions " in {
+    val board3x3 : Board = Board.createEmptyBoard(3, 3)
+    val solutions : Set[Board] = CalculationService.calculate(board3x3, List(King, King, Rook))
+    val expectedSolutionList : List[String] = List(" K - K\n - - -\n - R -\n", " K - -\n - - R\n K - -\n", " - R -\n - - -\n K - K\n", " - - K\n R - -\n - - K\n")
+    solutions.toSeq.zipWithIndex.foreach {
+      case (result, i) => {
+        assert(result.toString == expectedSolutionList(i))
+      }
+    }
+  }
+
 }
