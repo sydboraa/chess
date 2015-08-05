@@ -16,13 +16,13 @@ object Util {
             case 'B' => Bishop
             case 'N' => Knight
             case 'K' => King
-            case _ => throw new Exception("Wrong piece type!")
+            case _ => throw new Exception("WRONG PIECE TYPE!")
           }
         }
         listPiecesTypes.sortBy(_.priority)
       }
       case false => {
-        throw new Exception("Please enter the pieces!")
+        throw new Exception("PLEASE ENTER THE PIECES!")
       }
     }
   }

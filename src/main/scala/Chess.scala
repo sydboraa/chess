@@ -18,7 +18,7 @@ object Chess {
     val boardSizeN = in.readLine()
 
     if(!Util.boardSizeControl(boardSizeM, boardSizeN)){
-      println("Please enter valid size for board and piece types! (it must be numeric and not empty)")
+      println("Please enter valid size for board! (it must be numeric and not empty)")
     } else {
       println("Please enter the pieces of type")
       val piecesType = in.readLine().trim
